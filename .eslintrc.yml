@@ -36,4 +36,4 @@ rules:
     - error
     - props: true
       ignorePropertyModificationsFor: ['state']
-  react/jsx-uses-react: true
+  react/jsx-uses-react: 1
