@@ -6,4 +6,6 @@ export const rootReducer = combineReducers({
   game
 });
 
+export type RootState = ReturnType<typeof rootReducer>;
+
 export default configureStore({ reducer: rootReducer });

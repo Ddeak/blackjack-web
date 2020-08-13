@@ -4,7 +4,7 @@ import { addPlayerCard, addDealerCard, resetGame } from '../actions/game';
 import { Card } from '../../types/card';
 import { ALL_SUITS, PICTURED_CARDS } from '../../constants/card';
 
-type GameState = {
+export type GameState = {
   deck: Card[];
   dealerCards: Card[];
   playerCards: Card[];
