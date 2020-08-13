@@ -1,10 +1,9 @@
 import { combineReducers } from 'redux';
 import { configureStore } from '@reduxjs/toolkit';
-import { players, deck } from './reducers';
+import game from './reducers';
 
 export const rootReducer = combineReducers({
-  players,
-  deck
+  game
 });
 
 export default configureStore({ reducer: rootReducer });

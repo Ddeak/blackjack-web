@@ -1,2 +1,3 @@
-export { default as players } from './players';
-export { default as deck } from './deck';
+import game from './game';
+
+export default game;
