@@ -1,8 +1,8 @@
 enum GAME_STATE {
   Idle = 'Idle',
   Starting = 'Starting',
-  PlayersTurn = "Player's Turn",
-  DealersTurn = "Dealer's Turn",
+  PlayerTurn = 'PlayerTurn',
+  DealerTurn = 'DealerTurn',
 }
 
 export default GAME_STATE;

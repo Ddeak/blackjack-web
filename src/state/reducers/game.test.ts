@@ -48,9 +48,9 @@ describe('game state reducer', () => {
 
     const nextGameState = reducer(
       gameState,
-      updateGameState(GAME_STATE.PlayersTurn)
+      updateGameState(GAME_STATE.PlayerTurn)
     );
 
-    expect(nextGameState.currentState).toEqual(GAME_STATE.PlayersTurn);
+    expect(nextGameState.currentState).toEqual(GAME_STATE.PlayerTurn);
   });
 });
