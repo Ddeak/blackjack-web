@@ -1,12 +1,17 @@
 import { createReducer } from '@reduxjs/toolkit';
 
-import { addPlayerCard, addDealerCard, resetGame } from '../actions/game';
+import {
+  addPlayerCard,
+  addDealerCard,
+  resetGame,
+  updateGameState,
+} from '../actions/game';
 import { Card } from '../../types/card';
 import { ALL_SUITS, PICTURED_CARDS } from '../../constants/card';
 import GAME_STATE from '../../constants/game';
 
 export type GameState = {
-  state: keyof typeof GAME_STATE;
+  currentState: keyof typeof GAME_STATE;
   deck: Card[];
   dealerCards: Card[];
   playerCards: Card[];
@@ -45,7 +50,7 @@ const setupAndShuffleDeck = (): Card[] => {
 };
 
 export const initialState: GameState = {
-  state: GAME_STATE.Setup,
+  currentState: GAME_STATE.Idle,
   deck: setupAndShuffleDeck(),
   dealerCards: [],
   playerCards: [],
@@ -65,4 +70,7 @@ export default createReducer(initialState, (builder) =>
       ...initialState,
       deck: setupAndShuffleDeck(),
     }))
+    .addCase(updateGameState, (state, action) => {
+      state.currentState = action.payload;
+    })
 );

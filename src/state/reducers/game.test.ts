@@ -9,7 +9,7 @@ describe('game state reducer', () => {
     const gameState = reducer(undefined, { type: '' });
 
     expect(gameState).toMatchObject({
-      state: GAME_STATE.Setup,
+      currentState: GAME_STATE.Idle,
       playerCards: [],
       dealerCards: [],
     });

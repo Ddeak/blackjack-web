@@ -1,5 +1,6 @@
 enum GAME_STATE {
-  Setup = 'Setup',
+  Idle = 'Idle',
+  Starting = 'Starting',
   PlayersTurn = "Player's Turn",
   DealersTurn = "Dealer's Turn",
 }
