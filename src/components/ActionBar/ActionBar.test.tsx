@@ -89,3 +89,22 @@ test('players can "hit" a card while their score is less than the max score. Goi
   fireEvent.click(hitButton);
   expect(screen.getByText(`You lose!`)).toBeInTheDocument();
 });
+
+test('Resetting the game after a loss restarts the game', async () => {
+  const testGameState: GameState = createCustomGameState({
+    currentState: GAME_STATE.PlayerLose,
+  });
+
+  store = configureStore({
+    reducer: rootReducer,
+    preloadedState: { game: testGameState },
+  });
+
+  render(
+    <Provider store={store}>
+      <ActionBar />
+    </Provider>
+  );
+  fireEvent.click(screen.getByRole('button', { name: 'Play again?' }));
+  expect(screen.getByText('Start')).toBeInTheDocument();
+});
