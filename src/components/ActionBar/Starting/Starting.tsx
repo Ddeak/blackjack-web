@@ -16,23 +16,23 @@ const Starting = () => {
   React.useEffect(() => {
     setTimeout(() => {
       dispatch(addPlayerCard());
+    }, 500);
+
+    setTimeout(() => {
+      dispatch(addDealerCard());
     }, 1000);
+
+    setTimeout(() => {
+      dispatch(addPlayerCard());
+    }, 1500);
 
     setTimeout(() => {
       dispatch(addDealerCard());
     }, 2000);
 
     setTimeout(() => {
-      dispatch(addPlayerCard());
-    }, 3000);
-
-    setTimeout(() => {
-      dispatch(addDealerCard());
-    }, 4000);
-
-    setTimeout(() => {
       dispatch(updateGameState(GAME_STATE.PlayerTurn));
-    }, 5000);
+    }, 2500);
   }, [dispatch]);
 
   return (

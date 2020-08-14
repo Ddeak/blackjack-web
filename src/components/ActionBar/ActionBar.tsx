@@ -7,6 +7,7 @@ import GAME_STATE from '../../constants/game';
 import StartGame from './StartGame/StartGame';
 import Starting from './Starting/Starting';
 import InvalidState from './InvalidState';
+import PlayerTurn from './PlayerTurn/PlayerTurn';
 
 const ActionBar = () => {
   const { currentState } = useSelector((state: RootState) => state.game);
@@ -16,6 +17,8 @@ const ActionBar = () => {
       return <StartGame />;
     case GAME_STATE.Starting:
       return <Starting />;
+    case GAME_STATE.PlayerTurn:
+      return <PlayerTurn />;
     default:
       return <InvalidState />;
   }

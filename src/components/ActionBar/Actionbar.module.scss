@@ -6,3 +6,10 @@
   width: 90%;
   height: 10rem;
 }
+
+.playerButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 30%;
+}
