@@ -8,7 +8,7 @@ type PropsType = {
 
 const CustomCard = ({ message }: PropsType) => {
   return (
-    <div className={styles.card}>
+    <div className={`${styles.card} ${styles.greyBorder}`}>
       <p>{message}</p>
     </div>
   );

@@ -90,7 +90,7 @@ test('players can "hit" a card while their score is less than the max score. Goi
   expect(screen.getByText(`You lose!`)).toBeInTheDocument();
 });
 
-test('Resetting the game after a loss restarts the game', async () => {
+test('resetting the game after a loss restarts the game', async () => {
   const testGameState: GameState = createCustomGameState({
     currentState: GAME_STATE.PlayerLose,
   });
