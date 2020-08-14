@@ -12,4 +12,4 @@ export const ALL_SUITS = [
   SUITS.DIAMONDS,
 ];
 
-export const PICTURED_CARDS = ['JACK', 'QUEEN', 'KING'];
+export const PICTURED_CARDS = ['Jack', 'Queen', 'King'];

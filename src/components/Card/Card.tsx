@@ -10,6 +10,7 @@ type PropsType = {
 const CardView = ({ card }: PropsType) => {
   return (
     <div className={styles.card}>
+      <p>{card.suit}</p>
       <p>{card.name}</p>
     </div>
   );

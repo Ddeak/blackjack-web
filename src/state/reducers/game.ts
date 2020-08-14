@@ -23,7 +23,7 @@ const setupAndShuffleDeck = (): Card[] => {
   ALL_SUITS.forEach((suit) => {
     for (let i = 2; i <= 10; i += 1) {
       deck.push({
-        name: `${i} of ${suit}`,
+        name: `${i}`,
         value: i,
         suit,
       });
@@ -31,14 +31,14 @@ const setupAndShuffleDeck = (): Card[] => {
 
     PICTURED_CARDS.forEach((card) => {
       deck.push({
-        name: `${card} of ${suit}`,
+        name: `${card}`,
         value: 10,
         suit,
       });
     });
 
     deck.push({
-      name: `Ace of ${suit}`,
+      name: `Ace`,
       value: 1,
       suit,
     });
