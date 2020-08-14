@@ -3,7 +3,7 @@ enum GAME_STATE {
   Starting = 'Starting',
   PlayerTurn = 'PlayerTurn',
   DealerTurn = 'DealerTurn',
-  PlayerBust = 'PlayerBust',
+  PlayerLose = 'PlayerLose',
   PlayerWon = 'PlayerWon',
 }
 

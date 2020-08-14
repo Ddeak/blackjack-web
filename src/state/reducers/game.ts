@@ -32,7 +32,7 @@ export default createReducer(initialState, (builder) =>
       if (topCard) state.playerCards.push(topCard);
 
       if (calculatePlayerScores(state.playerCards)[0] > MAX_SCORE)
-        state.currentState = GAME_STATE.PlayerBust;
+        state.currentState = GAME_STATE.PlayerLose;
     })
     .addCase(addDealerCard, (state) => {
       const topCard = state.deck.pop();

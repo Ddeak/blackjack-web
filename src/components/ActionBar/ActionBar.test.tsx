@@ -62,7 +62,7 @@ test('advance from "idle" stage to "player turn" state.', async () => {
   expect(screen.getByText(/Your score is:/)).toBeInTheDocument();
 });
 
-test('players can "hit" a card while their score is less than the max score. Going over results in them going "bust".', async () => {
+test('players can "hit" a card while their score is less than the max score. Going over results in a lose.', async () => {
   const testGameState: GameState = createCustomGameState({
     currentState: GAME_STATE.PlayerTurn,
   });
@@ -84,6 +84,8 @@ test('players can "hit" a card while their score is less than the max score. Goi
   expect(hitButton).toBeInTheDocument();
 
   fireEvent.click(hitButton);
-
   expect(screen.getByText('Your score is: 19')).toBeInTheDocument();
+
+  fireEvent.click(hitButton);
+  expect(screen.getByText(`Oops! You went over 21!`)).toBeInTheDocument();
 });
