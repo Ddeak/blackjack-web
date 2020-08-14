@@ -1,2 +1,2 @@
-src/serviceWorker.ts
+src/serviceWorker.js
 **/*.d.ts
