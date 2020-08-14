@@ -23,7 +23,7 @@ const PlayerFieldView = ({ cards }: PropsType) => {
       <p>Player Cards:</p>
       <div className={styles.cardRow}>
         {cards.map((card) => (
-          <CardView card={card} />
+          <CardView key={`${card.name} ${card.suit}`} card={card} />
         ))}
       </div>
     </Field>

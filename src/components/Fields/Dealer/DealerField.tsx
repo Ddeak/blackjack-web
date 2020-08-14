@@ -25,9 +25,9 @@ const DealerFieldView = ({ cards }: PropsType) => {
       <div className={styles.cardRow}>
         {cards.map((card, index) =>
           index === 0 ? (
-            <CustomCard message="Hidden" />
+            <CustomCard key="dealerCard" message="Hidden" />
           ) : (
-            <CardView card={card} />
+            <CardView key={`${card.name} ${card.suit}`} card={card} />
           )
         )}
       </div>
