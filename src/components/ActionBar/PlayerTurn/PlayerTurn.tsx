@@ -3,20 +3,21 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import styles from '../Actionbar.module.scss';
 import { getPlayerScores } from '../../../state/selectors/game';
-import { addPlayerCard } from '../../../state/actions/game';
+import { addPlayerCard, updateGameState } from '../../../state/actions/game';
+import GAME_STATE from '../../../constants/game';
 
 const PlayerTurn = () => {
   const dispatch = useDispatch();
   const playerScore = useSelector(getPlayerScores);
 
   const onPlayerHit = () => dispatch(addPlayerCard());
-  const onPlayerStay = () => {};
+  const onPlayerStick = () => dispatch(updateGameState(GAME_STATE.DealerTurn));
 
   return (
     <PlayerTurnView
       playerScore={playerScore}
       onHit={onPlayerHit}
-      onStay={onPlayerStay}
+      onStick={onPlayerStick}
     />
   );
 };
@@ -24,10 +25,10 @@ const PlayerTurn = () => {
 type PropsType = {
   playerScore: [number, number];
   onHit: () => void;
-  onStay: () => void;
+  onStick: () => void;
 };
 
-const PlayerTurnView = ({ playerScore, onHit, onStay }: PropsType) => {
+const PlayerTurnView = ({ playerScore, onHit, onStick }: PropsType) => {
   let scoreDisplay = `${playerScore[0]}`;
   if (playerScore[1] > 0) scoreDisplay += ` or ${playerScore[1]}`;
 
@@ -39,8 +40,8 @@ const PlayerTurnView = ({ playerScore, onHit, onStay }: PropsType) => {
         <button type="button" onClick={onHit}>
           Hit
         </button>
-        <button type="button" onClick={onStay}>
-          Stand
+        <button type="button" onClick={onStick}>
+          Stick
         </button>
       </div>
     </div>
