@@ -8,7 +8,8 @@ import {
 } from '../actions/game';
 import { Card } from '../../types/card';
 import { ALL_SUITS, PICTURED_CARDS } from '../../constants/card';
-import GAME_STATE from '../../constants/game';
+import GAME_STATE, { MAX_SCORE } from '../../constants/game';
+import calculatePlayerScores from '../helpers';
 
 export type GameState = {
   currentState: keyof typeof GAME_STATE;
@@ -61,6 +62,9 @@ export default createReducer(initialState, (builder) =>
     .addCase(addPlayerCard, (state) => {
       const topCard = state.deck.pop();
       if (topCard) state.playerCards.push(topCard);
+
+      if (calculatePlayerScores(state.playerCards)[0] > MAX_SCORE)
+        state.currentState = GAME_STATE.PlayerBust;
     })
     .addCase(addDealerCard, (state) => {
       const topCard = state.deck.pop();

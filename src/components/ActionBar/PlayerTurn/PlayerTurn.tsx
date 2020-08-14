@@ -1,13 +1,15 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import styles from '../Actionbar.module.scss';
 import { getPlayerScores } from '../../../state/selectors/game';
+import { addPlayerCard } from '../../../state/actions/game';
 
 const PlayerTurn = () => {
+  const dispatch = useDispatch();
   const playerScore = useSelector(getPlayerScores);
 
-  const onPlayerHit = () => {};
+  const onPlayerHit = () => dispatch(addPlayerCard());
   const onPlayerStay = () => {};
 
   return (
