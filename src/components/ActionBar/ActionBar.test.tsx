@@ -87,5 +87,5 @@ test('players can "hit" a card while their score is less than the max score. Goi
   expect(screen.getByText('Your score is: 19')).toBeInTheDocument();
 
   fireEvent.click(hitButton);
-  expect(screen.getByText(`Oops! You went over 21!`)).toBeInTheDocument();
+  expect(screen.getByText(`You lose!`)).toBeInTheDocument();
 });
