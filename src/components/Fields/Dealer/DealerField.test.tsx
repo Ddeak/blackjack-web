@@ -6,8 +6,10 @@ import { configureStore, Store } from '@reduxjs/toolkit';
 import { rootReducer } from '../../../state/store';
 
 import DealerField from './DealerField';
-import { addDealerCard } from '../../../state/actions/game';
+import { GameState } from '../../../state/reducers/game';
+import GAME_STATE from '../../../constants/game';
 import { Card } from '../../../types/card';
+import { createCustomGameState } from '../../../testData/deck';
 
 test('render the DealerField without error', async () => {
   const store: Store = configureStore({ reducer: rootReducer });
@@ -22,9 +24,14 @@ test('render the DealerField without error', async () => {
 });
 
 test('give the dealer 2 cards from the deck. The first card by default should be "Hidden".', async () => {
-  const store: Store = configureStore({ reducer: rootReducer });
-  store.dispatch(addDealerCard());
-  store.dispatch(addDealerCard());
+  const testGameState: GameState = createCustomGameState({
+    currentState: GAME_STATE.PlayerTurn,
+  });
+
+  const store = configureStore({
+    reducer: rootReducer,
+    preloadedState: { game: testGameState },
+  });
 
   render(
     <Provider store={store}>
@@ -38,6 +45,25 @@ test('give the dealer 2 cards from the deck. The first card by default should be
 
   expect(dealerCards.length).toEqual(2);
 
-  expect(screen.getByText(dealerCards[1].name)).toBeInTheDocument();
-  expect(screen.getByText(dealerCards[1].suit)).toBeInTheDocument();
+  expect(screen.getByText('Queen')).toBeInTheDocument();
+  expect(screen.getByText('Hearts')).toBeInTheDocument();
+});
+
+test('the dealers cards should not be "Hidden" on their turn.', async () => {
+  const testGameState: GameState = createCustomGameState({
+    currentState: GAME_STATE.DealerTurn,
+  });
+
+  const store = configureStore({
+    reducer: rootReducer,
+    preloadedState: { game: testGameState },
+  });
+
+  render(
+    <Provider store={store}>
+      <DealerField />
+    </Provider>
+  );
+
+  expect(screen.queryByText('Hidden')).toBeNull();
 });
