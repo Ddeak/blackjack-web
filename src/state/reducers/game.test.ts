@@ -1,4 +1,4 @@
-import { addDealerCard, addPlayerCard } from '../actions/game';
+import { addDealerCard, addPlayerCard, updateGameState } from '../actions/game';
 
 import reducer, { initialState } from './game';
 import { ALL_SUITS } from '../../constants/card';
@@ -36,5 +36,21 @@ describe('game state reducer', () => {
     expect(nextGameState.playerCards.length).toEqual(1);
     expect(nextGameState.deck.length).toEqual(50);
     expect(nextGameState.dealerCards.length).toEqual(1);
+  });
+
+  test('dispatch the updateGameState action.', () => {
+    const gameState = reducer(
+      initialState,
+      updateGameState(GAME_STATE.Starting)
+    );
+
+    expect(gameState.currentState).toEqual(GAME_STATE.Starting);
+
+    const nextGameState = reducer(
+      gameState,
+      updateGameState(GAME_STATE.PlayersTurn)
+    );
+
+    expect(nextGameState.currentState).toEqual(GAME_STATE.PlayersTurn);
   });
 });
