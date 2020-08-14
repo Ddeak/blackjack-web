@@ -127,4 +127,5 @@ test('the player pressing "Stick" will progress the state to the dealers turn.',
 
   fireEvent.click(screen.getByRole('button', { name: 'Stick' }));
   expect(screen.getByText("Dealer's turn")).toBeInTheDocument();
+  expect(screen.getByText('Your score is: 19')).toBeInTheDocument();
 });
