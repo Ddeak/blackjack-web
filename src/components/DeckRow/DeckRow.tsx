@@ -1,12 +1,13 @@
 import React from 'react';
 
 import styles from './Deck.module.scss';
-import Deck from './Deck';
+
+import { CustomCard } from '../Card';
 
 const DeckRow = () => {
   return (
     <div className={styles.container}>
-      <Deck />
+      <CustomCard message="Deck" />
     </div>
   );
 };
