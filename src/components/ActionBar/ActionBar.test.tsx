@@ -10,6 +10,9 @@ import { configureStore, Store } from '@reduxjs/toolkit';
 
 import ActionBar from './ActionBar';
 import { rootReducer } from '../../state/store';
+import { GameState } from '../../state/reducers/game';
+import GAME_STATE from '../../constants/game';
+import { createCustomGameState } from '../../testData/deck';
 
 let store: Store;
 
@@ -57,4 +60,30 @@ test('advance from "idle" stage to "player turn" state.', async () => {
   });
 
   expect(screen.getByText(/Your score is:/)).toBeInTheDocument();
+});
+
+test('players can "hit" a card while their score is less than the max score. Going over results in them going "bust".', async () => {
+  const testGameState: GameState = createCustomGameState({
+    currentState: GAME_STATE.PlayerTurn,
+  });
+
+  store = configureStore({
+    reducer: rootReducer,
+    preloadedState: { game: testGameState },
+  });
+
+  render(
+    <Provider store={store}>
+      <ActionBar />
+    </Provider>
+  );
+
+  expect(screen.getByText('Your score is: 9 or 19')).toBeInTheDocument();
+
+  const hitButton = screen.getByRole('button', { name: 'Hit' });
+  expect(hitButton).toBeInTheDocument();
+
+  fireEvent.click(hitButton);
+
+  expect(screen.getByText('Your score is: 19')).toBeInTheDocument();
 });

@@ -1,7 +1,8 @@
 import { Card } from '../types/card';
 import { MAX_SCORE } from '../constants/game';
+import { ALL_SUITS, PICTURED_CARDS } from '../constants/card';
 
-const calculatePlayerScores = (cards: Card[]): [number, number] => {
+export const calculatePlayerScores = (cards: Card[]): [number, number] => {
   let primaryValue = 0;
   let secondaryValue = 0;
   let hasAceInHand = false;
@@ -17,4 +18,34 @@ const calculatePlayerScores = (cards: Card[]): [number, number] => {
   return [primaryValue, secondaryValue];
 };
 
-export default calculatePlayerScores;
+export const setupAndShuffleDeck = (): Card[] => {
+  const deck: Card[] = [];
+
+  ALL_SUITS.forEach((suit) => {
+    for (let i = 2; i <= 10; i += 1) {
+      deck.push({
+        name: `${i}`,
+        value: i,
+        suit,
+      });
+    }
+
+    PICTURED_CARDS.forEach((card) => {
+      deck.push({
+        name: `${card}`,
+        value: 10,
+        suit,
+      });
+    });
+
+    deck.push({
+      name: `Ace`,
+      value: 1,
+      suit,
+    });
+  });
+
+  deck.sort(() => Math.random() - 0.5);
+
+  return deck;
+};
