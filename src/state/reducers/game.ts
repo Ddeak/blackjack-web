@@ -13,27 +13,27 @@ export type GameState = {
 const setupAndShuffleDeck = (): Card[] => {
   const deck: Card[] = [];
 
-  ALL_SUITS.forEach(suit => {
+  ALL_SUITS.forEach((suit) => {
     for (let i = 2; i <= 10; i += 1) {
       deck.push({
         name: `${i} of ${suit}`,
         value: i,
-        suit
+        suit,
       });
     }
 
-    PICTURED_CARDS.forEach(card => {
+    PICTURED_CARDS.forEach((card) => {
       deck.push({
         name: `${card} of ${suit}`,
         value: 10,
-        suit
+        suit,
       });
     });
 
     deck.push({
       name: `Ace of ${suit}`,
       value: 1,
-      suit
+      suit,
     });
   });
 
@@ -45,21 +45,21 @@ const setupAndShuffleDeck = (): Card[] => {
 export const initialState: GameState = {
   deck: setupAndShuffleDeck(),
   dealerCards: [],
-  playerCards: []
+  playerCards: [],
 };
 
-export default createReducer(initialState, builder =>
+export default createReducer(initialState, (builder) =>
   builder
-    .addCase(addPlayerCard, state => {
+    .addCase(addPlayerCard, (state) => {
       const topCard = state.deck.pop();
       if (topCard) state.playerCards.push(topCard);
     })
-    .addCase(addDealerCard, state => {
+    .addCase(addDealerCard, (state) => {
       const topCard = state.deck.pop();
       if (topCard) state.dealerCards.push(topCard);
     })
     .addCase(resetGame, () => ({
       ...initialState,
-      deck: setupAndShuffleDeck()
+      deck: setupAndShuffleDeck(),
     }))
 );

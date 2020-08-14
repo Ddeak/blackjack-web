@@ -11,7 +11,7 @@ const scoresFromCardsSelector = (cardsInHand: Card[]): [number, number] => {
   let primaryValue = 0;
   const secondaryValue = 0;
 
-  cardsInHand.forEach(card => {
+  cardsInHand.forEach((card) => {
     primaryValue += card.value;
   });
 

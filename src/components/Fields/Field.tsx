@@ -1,6 +1,6 @@
 import React from 'react';
 
-import styles from './PlayerField.module.scss';
+import styles from './Fields.module.scss';
 
 type PropsType = {
   children: React.ReactNode;

@@ -9,14 +9,14 @@ describe('game state reducer', () => {
 
     expect(gameState).toMatchObject({
       playerCards: [],
-      dealerCards: []
+      dealerCards: [],
     });
 
     expect(gameState.deck.length).toEqual(52);
 
-    ALL_SUITS.forEach(suit => {
+    ALL_SUITS.forEach((suit) => {
       const currentSuitCards = gameState.deck.filter(
-        card => card.suit === suit
+        (card) => card.suit === suit
       );
       expect(currentSuitCards.length).toEqual(13);
     });
