@@ -2,12 +2,14 @@ import { addDealerCard, addPlayerCard } from '../actions/game';
 
 import reducer, { initialState } from './game';
 import { ALL_SUITS } from '../../constants/card';
+import GAME_STATE from '../../constants/game';
 
 describe('game state reducer', () => {
   test('ensure initial state is valid.', () => {
     const gameState = reducer(undefined, { type: '' });
 
     expect(gameState).toMatchObject({
+      state: GAME_STATE.Setup,
       playerCards: [],
       dealerCards: [],
     });
