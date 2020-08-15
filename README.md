@@ -32,4 +32,5 @@ In order to try this out:
 
 - Swap to the `daniel/testcafe` branch.
 - Run `yarn install`.
+- In another terminal, run `yarn start`.
 - Run `yarn run testcafe`.
