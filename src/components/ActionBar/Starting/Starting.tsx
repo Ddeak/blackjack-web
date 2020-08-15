@@ -12,7 +12,6 @@ import GAME_STATE from '../../../constants/game';
 const Starting = () => {
   const dispatch = useDispatch();
 
-  // VERY crude method to deal cards at the start.
   React.useEffect(() => {
     setTimeout(() => {
       dispatch(addPlayerCard());

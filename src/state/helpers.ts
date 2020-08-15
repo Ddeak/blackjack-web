@@ -1,4 +1,4 @@
-import { Card } from '../types/card';
+import { Card } from '../types';
 import { MAX_SCORE } from '../constants/game';
 import { ALL_SUITS, PICTURED_CARDS } from '../constants/card';
 

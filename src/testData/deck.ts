@@ -1,7 +1,6 @@
 import { SUITS } from '../constants/card';
 import GAME_STATE from '../constants/game';
-import { Card } from '../types/card';
-import { GameState } from '../state/reducers/game';
+import { GameState, Card } from '../types';
 
 export const testDeck: Card[] = [
   {

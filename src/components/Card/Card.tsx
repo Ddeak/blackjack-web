@@ -1,7 +1,7 @@
 import React from 'react';
 
 import styles from './Card.module.scss';
-import { Card } from '../../types/card';
+import { Card } from '../../types';
 import { SUITS } from '../../constants/card';
 
 type PropsType = {

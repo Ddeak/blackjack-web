@@ -10,7 +10,7 @@ import { configureStore, Store } from '@reduxjs/toolkit';
 
 import ActionBar from './ActionBar';
 import { rootReducer } from '../../state/store';
-import { GameState } from '../../state/reducers/game';
+import { GameState } from '../../types';
 import GAME_STATE from '../../constants/game';
 import { createCustomGameState } from '../../testData/deck';
 

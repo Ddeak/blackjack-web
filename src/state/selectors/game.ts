@@ -1,6 +1,6 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { RootState } from '../store';
-import { Card } from '../../types/card';
+import { Card } from '../../types';
 
 import { calculatePlayerScores } from '../helpers';
 import GAME_STATE from '../../constants/game';

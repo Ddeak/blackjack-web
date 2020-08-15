@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 
 import CardView from './Card';
 import CustomCard from './CustomCard';
-import { Card } from '../../types/card';
+import { Card } from '../../types';
 
 test('render a standard card', () => {
   const testCard: Card = {

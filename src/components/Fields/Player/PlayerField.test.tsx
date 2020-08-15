@@ -6,9 +6,8 @@ import { configureStore, Store } from '@reduxjs/toolkit';
 import { rootReducer } from '../../../state/store';
 
 import PlayerField from './PlayerField';
-import { GameState } from '../../../state/reducers/game';
+import { GameState, Card } from '../../../types';
 import GAME_STATE from '../../../constants/game';
-import { Card } from '../../../types/card';
 import { createCustomGameState } from '../../../testData/deck';
 
 test('render the PlayerField without error', async () => {

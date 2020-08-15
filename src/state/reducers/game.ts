@@ -6,17 +6,10 @@ import {
   resetGame,
   updateGameState,
 } from '../actions/game';
-import { Card } from '../../types/card';
+import { GameState } from '../../types';
 
 import GAME_STATE, { MAX_SCORE } from '../../constants/game';
 import { calculatePlayerScores, setupAndShuffleDeck } from '../helpers';
-
-export type GameState = {
-  currentState: keyof typeof GAME_STATE;
-  deck: Card[];
-  dealerCards: Card[];
-  playerCards: Card[];
-};
 
 export const initialState: GameState = {
   currentState: GAME_STATE.Idle,
