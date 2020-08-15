@@ -13,6 +13,7 @@ import { rootReducer } from '../../state/store';
 import { GameState } from '../../types';
 import GAME_STATE from '../../constants/game';
 import { createCustomGameState } from '../../testData/deck';
+import { SUITS } from '../../constants/card';
 
 let store: Store;
 
@@ -126,5 +127,52 @@ test('the player pressing "Stick" will progress the state to the dealers turn.',
   );
 
   fireEvent.click(screen.getByRole('button', { name: 'Stick' }));
-  expect(screen.getByText("Dealer's turn")).toBeInTheDocument();
+  expect(screen.getByText(/Dealer's turn/)).toBeInTheDocument();
+});
+
+test('display the "win" game actions when after the dealer goes bust', async () => {
+  const testGameState: GameState = createCustomGameState({
+    currentState: GAME_STATE.DealerTurn,
+  });
+
+  store = configureStore({
+    reducer: rootReducer,
+    preloadedState: { game: testGameState },
+  });
+
+  render(
+    <Provider store={store}>
+      <ActionBar />
+    </Provider>
+  );
+
+  await waitForElementToBeRemoved(() => screen.getByText(/Dealer's turn/), {
+    timeout: 3000,
+  });
+  expect(screen.queryByText(/You win!/)).toBeInTheDocument();
+  fireEvent.click(screen.getByRole('button', { name: 'Play again?' }));
+});
+
+test('display the "lose" game actions after the dealer gets closer to the max score.', async () => {
+  const testGameState: GameState = createCustomGameState({
+    deck: [{ name: '6', value: 6, suit: SUITS.HEARTS }],
+    currentState: GAME_STATE.DealerTurn,
+  });
+
+  store = configureStore({
+    reducer: rootReducer,
+    preloadedState: { game: testGameState },
+  });
+
+  render(
+    <Provider store={store}>
+      <ActionBar />
+    </Provider>
+  );
+
+  await waitForElementToBeRemoved(() => screen.getByText(/Dealer's turn/), {
+    timeout: 3000,
+  });
+  expect(screen.queryByText(/You lose!/)).toBeInTheDocument();
+  fireEvent.click(screen.getByRole('button', { name: 'Play again?' }));
 });

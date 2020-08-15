@@ -4,7 +4,7 @@ enum GAME_STATE {
   PlayerTurn = 'PlayerTurn',
   DealerTurn = 'DealerTurn',
   PlayerLose = 'PlayerLose',
-  PlayerWon = 'PlayerWon',
+  PlayerWin = 'PlayerWin',
 }
 
 export const MAX_SCORE = 21;

@@ -52,11 +52,11 @@ export const setupAndShuffleDeck = (): Card[] => {
 
 export const isGameOver = (
   gameState: GameState
-): GAME_STATE.PlayerWon | GAME_STATE.PlayerLose | GAME_STATE.DealerTurn => {
+): GAME_STATE.PlayerWin | GAME_STATE.PlayerLose | GAME_STATE.DealerTurn => {
   const dealerScores = calculatePlayerScores(gameState.dealerCards);
   const dealerScore = dealerScores[1] > 0 ? dealerScores[1] : dealerScores[0];
 
-  if (dealerScore > MAX_SCORE) return GAME_STATE.PlayerWon;
+  if (dealerScore > MAX_SCORE) return GAME_STATE.PlayerWin;
 
   const playerScores = calculatePlayerScores(gameState.playerCards);
   const playerScore = playerScores[1] > 0 ? playerScores[1] : playerScores[0];

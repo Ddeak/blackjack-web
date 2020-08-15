@@ -6,7 +6,7 @@ import GAME_STATE from '../../constants/game';
 
 import StartGame from './StartGame/StartGame';
 import Starting from './Starting/Starting';
-import Lose from './Lose/Lose';
+import { PlayerLose, PlayerWin } from './GameOver/GameOver';
 import InvalidState from './InvalidState';
 import PlayerTurn from './PlayerTurn/PlayerTurn';
 import DealerTurn from './DealerTurn/DealerTurn';
@@ -22,7 +22,9 @@ const ActionBar = () => {
     case GAME_STATE.PlayerTurn:
       return <PlayerTurn />;
     case GAME_STATE.PlayerLose:
-      return <Lose />;
+      return <PlayerLose />;
+    case GAME_STATE.PlayerWin:
+      return <PlayerWin />;
     case GAME_STATE.DealerTurn:
       return <DealerTurn />;
     default:
