@@ -11,7 +11,7 @@ const GameOver = ({ message }: { message: string }) => {
   return (
     <div className={styles.container}>
       <h3>{message}</h3>
-      <button type="button" onClick={onPlayAgainClick}>
+      <button id="reset" type="button" onClick={onPlayAgainClick}>
         Play again?
       </button>
     </div>

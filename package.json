@@ -13,6 +13,7 @@
     "react-redux": "^7.2.0",
     "react-scripts": "3.4.1",
     "redux": "^4.0.5",
+    "testcafe-react-selectors": "^4.0.0",
     "typescript": "^3.8.3"
   },
   "devDependencies": {
@@ -22,9 +23,9 @@
     "@types/react-dom": "^16.9.6",
     "@types/react-redux": "^7.1.7",
     "eslint-config-airbnb": "^18.1.0",
+    "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-eslint-comments": "^3.1.2",
     "eslint-plugin-jest": "^23.8.2",
-    "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.4",
     "jest-environment-jsdom-sixteen": "^1.0.3",
     "prettier": "^2.0.5",
@@ -35,7 +36,8 @@
     "stylelint-config-standard": "^19.0.0",
     "stylelint-order": "^4.0.0",
     "stylelint-prettier": "^1.1.2",
-    "stylelint-scss": "^3.17.1"
+    "stylelint-scss": "^3.17.1",
+    "testcafe": "^1.9.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -45,7 +47,8 @@
     "lint:js": "eslint --ext js,ts,tsx src",
     "lint:scss": "stylelint \"src/**/*.scss\"",
     "lint": "yarn run lint:js && yarn run lint:scss",
-    "prettier": "prettier --write src/**/*.ts"
+    "prettier": "prettier --write src/**/*.ts",
+    "testcafe": "testcafe chrome src/testcafe.ts"
   },
   "eslintConfig": {
     "extends": "react-app"

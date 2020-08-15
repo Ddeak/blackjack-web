@@ -13,7 +13,7 @@ const StartGameActions = () => {
   return (
     <div className={styles.container}>
       <h3>Press the button to start the game!</h3>
-      <button type="button" onClick={onStartClick}>
+      <button id="start" type="button" onClick={onStartClick}>
         Start
       </button>
     </div>
