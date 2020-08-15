@@ -26,6 +26,13 @@ const scoresFromDealerCardsSelector = (
     : calculatePlayerScores(cardsInHand.slice(1));
 };
 
+const createDisplayFromScores = (scores: [number, number]) => {
+  let scoreToDisplay = `${scores[0]}`;
+  if (scores[1] > 0) scoreToDisplay += ` or ${scores[1]}`;
+
+  return scoreToDisplay;
+};
+
 export const getPlayerScores = createSelector(
   playerCardsSelector,
   scoresFromCardsSelector
@@ -35,4 +42,14 @@ export const getDealerScores = createSelector(
   dealerCardsSelector,
   currentGameStateSelector,
   scoresFromDealerCardsSelector
+);
+
+export const getDealerDisplayScore = createSelector(
+  getDealerScores,
+  createDisplayFromScores
+);
+
+export const getPlayerDisplayScore = createSelector(
+  getPlayerScores,
+  createDisplayFromScores
 );

@@ -2,23 +2,20 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import styles from '../Actionbar.module.scss';
-import { getPlayerScores } from '../../../state/selectors/game';
+import { getPlayerDisplayScore } from '../../../state/selectors/game';
 import { addPlayerCard, updateGameState } from '../../../state/actions/game';
 import GAME_STATE from '../../../constants/game';
 
 const PlayerTurn = () => {
   const dispatch = useDispatch();
-  const playerScore = useSelector(getPlayerScores);
+  const playerScore = useSelector(getPlayerDisplayScore);
 
   const onPlayerHit = () => dispatch(addPlayerCard());
   const onPlayerStick = () => dispatch(updateGameState(GAME_STATE.DealerTurn));
 
-  let scoreToDisplay = `${playerScore[0]}`;
-  if (playerScore[1] > 0) scoreToDisplay += ` or ${playerScore[1]}`;
-
   return (
     <PlayerTurnView
-      playerScore={scoreToDisplay}
+      playerScore={playerScore}
       onHit={onPlayerHit}
       onStick={onPlayerStick}
     />

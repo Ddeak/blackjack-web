@@ -6,8 +6,10 @@ import { configureStore, Store } from '@reduxjs/toolkit';
 import { rootReducer } from '../../../state/store';
 
 import PlayerField from './PlayerField';
-import { addPlayerCard } from '../../../state/actions/game';
+import { GameState } from '../../../state/reducers/game';
+import GAME_STATE from '../../../constants/game';
 import { Card } from '../../../types/card';
+import { createCustomGameState } from '../../../testData/deck';
 
 test('render the PlayerField without error', async () => {
   const store: Store = configureStore({ reducer: rootReducer });
@@ -20,10 +22,15 @@ test('render the PlayerField without error', async () => {
   expect(screen.getByText('Player Cards:')).toBeInTheDocument();
 });
 
-test('give the player 2 cards', async () => {
-  const store: Store = configureStore({ reducer: rootReducer });
-  store.dispatch(addPlayerCard());
-  store.dispatch(addPlayerCard());
+test('ensure two test cards are rendered in the player field.', async () => {
+  const testGameState: GameState = createCustomGameState({
+    currentState: GAME_STATE.PlayerTurn,
+  });
+
+  const store = configureStore({
+    reducer: rootReducer,
+    preloadedState: { game: testGameState },
+  });
 
   render(
     <Provider store={store}>
@@ -35,9 +42,11 @@ test('give the player 2 cards', async () => {
 
   expect(playerCards.length).toEqual(2);
 
-  expect(screen.getAllByText(playerCards[0].name)[0]).toBeInTheDocument();
-  expect(screen.getAllByText(playerCards[0].suit)[0]).toBeInTheDocument();
+  expect(screen.getByText('8')).toBeInTheDocument();
+  expect(screen.getByText('Clubs')).toBeInTheDocument();
 
-  expect(screen.getAllByText(playerCards[1].name)[0]).toBeInTheDocument();
-  expect(screen.getAllByText(playerCards[1].suit)[0]).toBeInTheDocument();
+  expect(screen.getByText('Ace')).toBeInTheDocument();
+  expect(screen.getByText('Diamonds')).toBeInTheDocument();
+
+  expect(screen.getByText(/9 or 19/)).toBeInTheDocument();
 });
