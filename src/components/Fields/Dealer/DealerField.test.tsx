@@ -42,11 +42,12 @@ test('give the dealer 2 cards from the deck. The first card by default should be
   expect(screen.getAllByText('Hidden').length).toEqual(1);
 
   const { dealerCards }: { dealerCards: Card[] } = store.getState().game;
-
   expect(dealerCards.length).toEqual(2);
 
   expect(screen.getByText('Queen')).toBeInTheDocument();
   expect(screen.getByText('Hearts')).toBeInTheDocument();
+
+  expect(screen.getByText(/10/)).toBeInTheDocument();
 });
 
 test('the dealers cards should not be "Hidden" on their turn.', async () => {
