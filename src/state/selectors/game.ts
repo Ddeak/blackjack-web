@@ -17,13 +17,13 @@ const scoresFromCardsSelector = (cardsInHand: Card[]): [number, number] => {
 
 const scoresFromDealerCardsSelector = (
   cardsInHand: Card[],
-  currentState: keyof typeof GAME_STATE
+  hideDealerCard: boolean
 ): [number, number] => {
   if (cardsInHand.length === 0) return [0, 0];
 
-  return currentState === GAME_STATE.DealerTurn
-    ? calculatePlayerScores(cardsInHand)
-    : calculatePlayerScores(cardsInHand.slice(1));
+  return hideDealerCard
+    ? calculatePlayerScores(cardsInHand.slice(1))
+    : calculatePlayerScores(cardsInHand);
 };
 
 const createDisplayFromScores = (scores: [number, number]) => {
@@ -33,6 +33,16 @@ const createDisplayFromScores = (scores: [number, number]) => {
   return scoreToDisplay;
 };
 
+export const hideDealerCardSelector = createSelector(
+  currentGameStateSelector,
+  (currentState) => {
+    return (
+      currentState === GAME_STATE.Starting ||
+      currentState === GAME_STATE.PlayerTurn
+    );
+  }
+);
+
 export const getPlayerScores = createSelector(
   playerCardsSelector,
   scoresFromCardsSelector
@@ -40,7 +50,7 @@ export const getPlayerScores = createSelector(
 
 export const getDealerScores = createSelector(
   dealerCardsSelector,
-  currentGameStateSelector,
+  hideDealerCardSelector,
   scoresFromDealerCardsSelector
 );
 

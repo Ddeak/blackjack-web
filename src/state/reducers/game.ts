@@ -9,7 +9,11 @@ import {
 import { GameState } from '../../types';
 
 import GAME_STATE, { MAX_SCORE } from '../../constants/game';
-import { calculatePlayerScores, setupAndShuffleDeck } from '../helpers';
+import {
+  calculatePlayerScores,
+  setupAndShuffleDeck,
+  isGameOver,
+} from '../helpers';
 
 export const initialState: GameState = {
   currentState: GAME_STATE.Idle,
@@ -30,12 +34,18 @@ export default createReducer(initialState, (builder) =>
     .addCase(addDealerCard, (state) => {
       const topCard = state.deck.pop();
       if (topCard) state.dealerCards.push(topCard);
+
+      if (state.currentState === GAME_STATE.DealerTurn)
+        state.currentState = isGameOver(state);
     })
     .addCase(resetGame, () => ({
       ...initialState,
       deck: setupAndShuffleDeck(),
     }))
     .addCase(updateGameState, (state, action) => {
-      state.currentState = action.payload;
+      state.currentState =
+        action.payload === GAME_STATE.DealerTurn
+          ? isGameOver(state)
+          : action.payload;
     })
 );

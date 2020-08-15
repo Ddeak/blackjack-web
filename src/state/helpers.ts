@@ -1,5 +1,5 @@
-import { Card } from '../types';
-import { MAX_SCORE } from '../constants/game';
+import { Card, GameState } from '../types';
+import GAME_STATE, { MAX_SCORE } from '../constants/game';
 import { ALL_SUITS, PICTURED_CARDS } from '../constants/card';
 
 export const calculatePlayerScores = (cards: Card[]): [number, number] => {
@@ -48,4 +48,20 @@ export const setupAndShuffleDeck = (): Card[] => {
   deck.sort(() => Math.random() - 0.5);
 
   return deck;
+};
+
+export const isGameOver = (
+  gameState: GameState
+): GAME_STATE.PlayerWon | GAME_STATE.PlayerLose | GAME_STATE.DealerTurn => {
+  const dealerScores = calculatePlayerScores(gameState.dealerCards);
+  const dealerScore = dealerScores[1] > 0 ? dealerScores[1] : dealerScores[0];
+
+  if (dealerScore > MAX_SCORE) return GAME_STATE.PlayerWon;
+
+  const playerScores = calculatePlayerScores(gameState.playerCards);
+  const playerScore = playerScores[1] > 0 ? playerScores[1] : playerScores[0];
+
+  if (dealerScore > playerScore) return GAME_STATE.PlayerLose;
+
+  return GAME_STATE.DealerTurn;
 };
