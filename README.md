@@ -28,8 +28,10 @@ While I am not married to this style, I feel it works well for the apps I curren
 ### E2E Testing:
 
 I wrote a very short end-to-end test on the daniel/testcafe branch. Testcafe is a tool that was recommended to me for this purpose.
-In order to try this out:
+Note: this currently is targetting only Google Chrome. Either have Chrome installed, or change the `testcafe chrome` part of 
+package.json to use the browser of your choice. 
 
+In order to try this out:
 - Swap to the `daniel/testcafe` branch.
 - Run `yarn install`.
 - In another terminal, run `yarn start`.
