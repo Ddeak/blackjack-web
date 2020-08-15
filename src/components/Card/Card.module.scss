@@ -1,0 +1,23 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 5rem;
+  height: 7.5rem;
+  padding: 0.3rem;
+  background-color: white;
+  border-radius: 0.2rem;
+}
+
+.blackBorder {
+  border: 2px solid black;
+}
+
+.redBorder {
+  border: 2px solid red;
+}
+
+.greyBorder {
+  border: 2px solid grey;
+}

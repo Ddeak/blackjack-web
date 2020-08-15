@@ -2,14 +2,14 @@ export enum SUITS {
   HEARTS = 'Hearts',
   SPADES = 'Spades',
   CLUBS = 'Clubs',
-  DIAMONDS = 'Diamonds'
+  DIAMONDS = 'Diamonds',
 }
 
 export const ALL_SUITS = [
   SUITS.HEARTS,
   SUITS.SPADES,
   SUITS.CLUBS,
-  SUITS.DIAMONDS
+  SUITS.DIAMONDS,
 ];
 
-export const PICTURED_CARDS = ['JACK', 'QUEEN', 'KING'];
+export const PICTURED_CARDS = ['Jack', 'Queen', 'King'];
