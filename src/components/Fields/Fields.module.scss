@@ -3,7 +3,7 @@
   min-height: 12rem;
   margin-bottom: 1rem;
   padding: 1rem;
-  background-color: #aaa;
+  background-color: #ccc;
 }
 
 .cardRow {
@@ -11,4 +11,10 @@
   flex-direction: row;
   justify-content: space-evenly;
   width: 90%;
+}
+
+.detailsRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }

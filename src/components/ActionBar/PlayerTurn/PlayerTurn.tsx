@@ -13,9 +13,12 @@ const PlayerTurn = () => {
   const onPlayerHit = () => dispatch(addPlayerCard());
   const onPlayerStick = () => dispatch(updateGameState(GAME_STATE.DealerTurn));
 
+  let scoreToDisplay = `${playerScore[0]}`;
+  if (playerScore[1] > 0) scoreToDisplay += ` or ${playerScore[1]}`;
+
   return (
     <PlayerTurnView
-      playerScore={playerScore}
+      playerScore={scoreToDisplay}
       onHit={onPlayerHit}
       onStick={onPlayerStick}
     />
@@ -23,18 +26,15 @@ const PlayerTurn = () => {
 };
 
 type PropsType = {
-  playerScore: [number, number];
+  playerScore: string;
   onHit: () => void;
   onStick: () => void;
 };
 
 const PlayerTurnView = ({ playerScore, onHit, onStick }: PropsType) => {
-  let scoreDisplay = `${playerScore[0]}`;
-  if (playerScore[1] > 0) scoreDisplay += ` or ${playerScore[1]}`;
-
   return (
     <div className={styles.container}>
-      <h3>Your score is: {scoreDisplay}</h3>
+      <h3>Your score is: {playerScore}</h3>
 
       <div className={styles.playerButtons}>
         <button type="button" onClick={onHit}>

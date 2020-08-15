@@ -18,9 +18,9 @@ const DealerField = () => {
 
   return (
     <Field>
-      <div className={styles.dealerDetailsRow}>
-        <p>Dealer Cards:</p>
-        <p>Dealer Score: {dealerScore[0]}</p>
+      <div className={styles.detailsRow}>
+        <h5>Dealer Cards:</h5>
+        <h5>Dealer Score: {dealerScore[0]}</h5>
       </div>
 
       <div className={styles.cardRow}>

@@ -11,7 +11,11 @@ const PlayerField = () => {
 
   return (
     <Field>
-      <p>Player Cards:</p>
+      <div className={styles.detailsRow}>
+        <h5>Player Cards:</h5>
+        <h5>Player Score:</h5>
+      </div>
+
       <div className={styles.cardRow}>
         {playerCards.map((card) => (
           <CardView key={`${card.name} ${card.suit}`} card={card} />
