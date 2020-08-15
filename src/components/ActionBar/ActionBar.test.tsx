@@ -176,3 +176,26 @@ test('display the "lose" game actions after the dealer gets closer to the max sc
   expect(screen.queryByText(/You lose!/)).toBeInTheDocument();
   fireEvent.click(screen.getByRole('button', { name: 'Play again?' }));
 });
+
+test('the hit button should be disabled if the player score is exactly 21', async () => {
+  const testGameState: GameState = createCustomGameState({
+    currentState: GAME_STATE.PlayerTurn,
+    playerCards: [
+      { name: 'Ace', value: 1, suit: SUITS.HEARTS },
+      { name: 'King', value: 10, suit: SUITS.HEARTS },
+    ],
+  });
+
+  store = configureStore({
+    reducer: rootReducer,
+    preloadedState: { game: testGameState },
+  });
+
+  render(
+    <Provider store={store}>
+      <ActionBar />
+    </Provider>
+  );
+
+  expect(screen.getByRole('button', { name: 'Hit' })).toBeDisabled();
+});

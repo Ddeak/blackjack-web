@@ -3,7 +3,7 @@ import { RootState } from '../store';
 import { Card } from '../../types';
 
 import { calculatePlayerScores } from '../helpers';
-import GAME_STATE from '../../constants/game';
+import GAME_STATE, { MAX_SCORE } from '../../constants/game';
 
 const playerCardsSelector = (state: RootState) => state.game.playerCards;
 const dealerCardsSelector = (state: RootState) => state.game.dealerCards;
@@ -62,4 +62,9 @@ export const getDealerDisplayScore = createSelector(
 export const getPlayerDisplayScore = createSelector(
   getPlayerScores,
   createDisplayFromScores
+);
+
+export const preventPlayerHitSelector = createSelector(
+  getPlayerScores,
+  (scores) => scores[0] === MAX_SCORE || scores[1] === MAX_SCORE
 );
